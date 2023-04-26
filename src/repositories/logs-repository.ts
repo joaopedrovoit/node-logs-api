@@ -11,12 +11,12 @@ const logsRepository = {
   readAll: (callback: (logs: Log[]) => void) => {
     const sql = 'SELECT * FROM logs';
     const params: any[] = [];
-    database.all(sql, params, (_err, rows) => callback(rows));
+    database.all(sql, params, (_err, rows: Log[]) => callback(rows));
   },
   read: (id: number, callback: (log?: Log) => void) => {
     const sql = 'SELECT * FROM logs WHERE id = ?';
     const params = [id];
-    database.get(sql, params, (_err, row) => callback(row));
+    database.get(sql, params, (_err, row: Log) => callback(row));
   },
   update: (id: number, log: Log, callback: (notFound: boolean) => void) => {
     const sql = 'UPDATE logs SET nome = ?, descricao = ? WHERE id = ?';
